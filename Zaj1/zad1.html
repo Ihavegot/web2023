@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script>
+        let scrOutput = "";
+        const signs = ["+", "-", "*", "/"];
+        function gen() {
+            const main = document.getElementById("main");
+
+            for (let i = 0; i < 10; i++) {
+                let newKey = document.createElement("buton");
+                newKey.innerText = i + " ";
+                newKey.onclick = show;
+                newKey.dataset.value = i;
+                main.appendChild(newKey);
+            }
+
+            signs.forEach(element => {
+                let sign = document.createElement("buton");
+                sign.innerText = element + " ";
+                sign.onclick = show;
+                sign.dataset.value = element;
+                main.appendChild(sign);
+            });
+
+            const equal = document.createElement("buton");
+            equal.innerText = "= ";
+            equal.onclick = calculate;
+            equal.dataset.value = "=";
+            main.appendChild(equal);
+
+            const dot = document.createElement("buton");
+            dot.innerText = ". ";
+            dot.onclick = show;
+            dot.dataset.value = ".";
+            main.appendChild(dot);
+
+            const del = document.createElement("buton");
+            del.innerText = "< ";
+            del.onclick = delLast;
+            del.dataset.value = "<";
+            main.appendChild(del);
+
+            const clear = document.createElement("buton");
+            clear.innerText = "C ";
+            clear.onclick = clearAll;
+            clear.dataset.value = "C";
+            main.appendChild(clear);
+
+            const screen = document.getElementById("screen");
+        }
+
+        function clearAll() {
+            scrOutput = "";
+            document.getElementById("screen").innerHTML = scrOutput;
+        }
+
+        function delLast() {
+            let arr = scrOutput.split("");
+            arr.splice(-1);
+            scrOutput = arr.toString();
+            document.getElementById("screen").innerHTML = scrOutput;
+        }
+        
+        function validte(a){
+            if(isNaN(a)){
+                alert("Popraw to!!!");
+                clearAll();
+            }
+        }
+
+        function calculate() {
+            let a = "";
+            let s = "";
+            let b = "";
+
+            let arr = scrOutput.split("");
+            let swap = 0;
+            arr.forEach(element => {
+                if (swap == 0) {
+                    if (signs.indexOf(element) === -1) {
+                        a += element;
+                    } else {
+                        s = element;
+                        swap = 1;
+                    }
+                } else {
+                    b += element;
+                }
+
+            });
+            // console.log("a=" + a);
+            // console.log("s=" + s);
+            // console.log("b=" + b);
+            let out = 0;
+            switch (s) {
+                case "+":
+                    out = parseFloat(a) + parseFloat(b);
+                    document.getElementById("screen").innerHTML = out;
+                    break;
+                case "-":
+                    out = parseFloat(a) - parseFloat(b);
+                    document.getElementById("screen").innerHTML = out;
+                    break;
+                case "*":
+                    out = parseFloat(a) * parseFloat(b);
+                    document.getElementById("screen").innerHTML = out;
+                    break;
+                case "/":
+                    out = parseFloat(a) / parseFloat(b);
+                    document.getElementById("screen").innerHTML = out;
+                    break;
+            }
+            scrOutput = out;
+            validte(scrOutput);
+        
+        }
+
+        function show() {
+            scrOutput += this.dataset.value;
+            document.getElementById("screen").innerHTML = scrOutput;
+        }
+    </script>
+</head>
+
+<body onload="gen()">
+    <div id="main">
+
+    </div>
+    <div id="screen">
+
+    </div>
+</body>
+
+</html>
