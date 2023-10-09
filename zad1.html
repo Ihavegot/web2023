@@ -55,11 +55,22 @@
         }
 
         function clearAll() {
-
+            scrOutput = "";
+            document.getElementById("screen").innerHTML = scrOutput;
         }
 
         function delLast() {
-
+            let arr = scrOutput.split("");
+            arr.splice(-1);
+            scrOutput = arr.toString();
+            document.getElementById("screen").innerHTML = scrOutput;
+        }
+        
+        function validte(a){
+            if(isNaN(a)){
+                alert("Popraw to!!!");
+                clearAll();
+            }
         }
 
         function calculate() {
@@ -105,8 +116,8 @@
                     break;
             }
             scrOutput = out;
-            console.log(scrOutput);
-
+            validte(scrOutput);
+        
         }
 
         function show() {
