@@ -12,41 +12,41 @@
             const main = document.getElementById("main");
 
             for (let i = 0; i < 10; i++) {
-                let newKey = document.createElement("buton");
-                newKey.innerText = i + " ";
+                let newKey = document.createElement("button");
+                newKey.innerText = i;
                 newKey.onclick = show;
                 newKey.dataset.value = i;
                 main.appendChild(newKey);
             }
 
             signs.forEach(element => {
-                let sign = document.createElement("buton");
-                sign.innerText = element + " ";
+                let sign = document.createElement("button");
+                sign.innerText = element;
                 sign.onclick = show;
                 sign.dataset.value = element;
                 main.appendChild(sign);
             });
 
-            const equal = document.createElement("buton");
-            equal.innerText = "= ";
+            const equal = document.createElement("button");
+            equal.innerText = "=";
             equal.onclick = calculate;
             equal.dataset.value = "=";
             main.appendChild(equal);
 
-            const dot = document.createElement("buton");
-            dot.innerText = ". ";
+            const dot = document.createElement("button");
+            dot.innerText = ".";
             dot.onclick = show;
             dot.dataset.value = ".";
             main.appendChild(dot);
 
-            const del = document.createElement("buton");
-            del.innerText = "< ";
+            const del = document.createElement("button");
+            del.innerText = "<";
             del.onclick = delLast;
             del.dataset.value = "<";
             main.appendChild(del);
 
-            const clear = document.createElement("buton");
-            clear.innerText = "C ";
+            const clear = document.createElement("button");
+            clear.innerText = "C";
             clear.onclick = clearAll;
             clear.dataset.value = "C";
             main.appendChild(clear);
